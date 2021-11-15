@@ -30976,26 +30976,23 @@ function Wizard() {
   const [activeStep, setActiveStep] = react_1.useState(1);
   const nav = generate_wizard_navigation_1.generateWizardNavigation(wizardData_1.wizard.sections);
   const steps = generate_steps_1.generateSteps(wizardData_1.wizard.sections);
+
+  const handleEnterClick = e => {
+    if (e.code === "Enter" && activeStep < steps.length) {
+      setActiveStep(activeStep + 1);
+    }
+
+    if (e.code === "Backspace" && activeStep > 1) {
+      setActiveStep(activeStep - 1);
+    }
+  };
+
   react_1.useEffect(() => {
-    const handleEnterClick = e => {
-      console.log({
-        e
-      });
-
-      if (e.code === "Enter" && activeStep < steps.length) {
-        setActiveStep(activeStep + 1);
-      }
-
-      if (e.code === "Backspace" && activeStep > 1) {
-        setActiveStep(activeStep - 1);
-      }
-    };
-
     window.addEventListener("keydown", handleEnterClick);
     return () => {
       window.removeEventListener("keydown", handleEnterClick);
     };
-  }, [activeStep, setActiveStep, steps]);
+  }, [handleEnterClick]);
   const navigation = nav.map((navItem, index) =>
   /*#__PURE__*/
   (0, _jsxRuntime.jsx)("li", {
@@ -31176,7 +31173,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35273" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41261" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
