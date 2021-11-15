@@ -12,20 +12,23 @@ export function Wizard() {
   const nav = generateWizardNavigation(wizard.sections);
   const steps = generateSteps(wizard.sections);
 
+  const handleEnterClick = (e: KeyboardEvent) => {
+    if (e.code === "Enter" && activeStep < steps.length) {
+      setActiveStep(activeStep + 1);
+    }
+
+    if (e.code === "Backspace" && activeStep > 1) {
+      setActiveStep(activeStep - 1);
+    }
+  };
+
   useEffect(() => {
-    const handleEnterClick = (e: KeyboardEvent) => {
-      console.log({ e });
-      if (e.code === "Enter" && activeStep < steps.length) {
-        setActiveStep(activeStep + 1);
-      }
-
-      if (e.code === "Backspace" && activeStep > 1) {
-        setActiveStep(activeStep - 1);
-      }
-    };
-
     window.addEventListener("keydown", handleEnterClick);
-  }, [activeStep, setActiveStep, steps]);
+
+    return () => {
+      window.removeEventListener("keydown", handleEnterClick);
+    };
+  }, [handleEnterClick]);
 
   const navigation = nav.map((navItem, index) => (
     <li key={index}>

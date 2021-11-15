@@ -30992,6 +30992,9 @@ function Wizard() {
     };
 
     window.addEventListener("keydown", handleEnterClick);
+    return () => {
+      window.removeEventListener("keydown", handleEnterClick);
+    };
   }, [activeStep, setActiveStep, steps]);
   const navigation = nav.map((navItem, index) =>
   /*#__PURE__*/
@@ -31173,7 +31176,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43165" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35273" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
