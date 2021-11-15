@@ -6,7 +6,8 @@
   "scripts": {
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet",
-    "dev": "parcel src/index.html"
+    "dev": "parcel src/index.html",
+    "build": "parcel --out-dir docs --public-url https://uixprt.github.io/reactWizard/ src/index.html"
   },
   "author": "Asher Indursky <uixprt@gmail.com>",
   "license": "Apache-2.0",
