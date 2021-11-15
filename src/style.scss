@@ -1,6 +1,7 @@
 $active: #3abdd9;
-$lighter: #fbfbfb;
-$light: darken($lighter, 30%);
+$light-1: #fbfbfb;
+$light-2: darken($light-1, 10%);
+$light-3: darken($light-1, 30%);
 $dark: #0d131e;
 
 html {
@@ -11,7 +12,7 @@ body {
   margin: 0;
   box-sizing: border-box;
   font-size: 1.6rem;
-  background-color: $lighter;
+  background-color: $light-1;
   font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Helvetica,
     Arial, sans-serif;
   color: $dark;
@@ -49,7 +50,7 @@ button {
 
   &.active {
     cursor: default;
-    background-color: $light;
+    background-color: $light-2;
   }
 
   &[disabled] {
@@ -59,7 +60,7 @@ button {
   }
 
   &:not(.active, [disabled]):hover {
-    background-color: $light;
+    background-color: $light-2;
   }
 
   &.section-title {
@@ -99,7 +100,7 @@ input {
     font-size: 1.2em;
     line-height: 2;
     padding-left: 1.2em;
-    border: 1px solid $light;
+    border: 1px solid $light-3;
     border-radius: 0.5em;
 
     &:focus {
@@ -129,7 +130,7 @@ input {
       display: block;
       font-size: 1.2em;
       padding: 0.6em 1.2em;
-      border: 1px solid $light;
+      border: 1px solid $light-3;
       border-radius: 0.5em;
       cursor: pointer;
       text-align: center;

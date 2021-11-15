@@ -38,7 +38,7 @@ button.active, button.prev {
 }
 button.active {
   cursor: default;
-  background-color: #afafaf;
+  background-color: #e2e2e2;
 }
 button[disabled] {
   opacity: 0.2;
@@ -46,7 +46,7 @@ button[disabled] {
   pointer-events: none;
 }
 button:not(.active, [disabled]):hover {
-  background-color: #afafaf;
+  background-color: #e2e2e2;
 }
 button.section-title {
   counter-increment: section;
