@@ -1,0 +1,42 @@
+@import 'src/scss/config/colors';
+
+@mixin base() {
+  display: block;
+  width: 100%;
+  font-size: 1.2em;
+  line-height: 2;
+  padding-left: 1.2em;
+  border: 1px solid $light-3;
+  border-radius: 0.5em;
+  margin-bottom: 0.3em;
+}
+
+@mixin focus() {
+  outline-width: 0.1rem;
+  outline-color: $active-1;
+}
+
+@mixin radioLabel() {
+  flex: 1;
+  margin: 0 0.3em 0.3em;
+
+  input[type='radio'] {
+    display: none;
+  }
+
+  span {
+    display: block;
+    font-size: 1.2em;
+    padding: 0 1.2em;
+    line-height: 2.1;
+    border: 1px solid $light-3;
+    border-radius: 0.5em;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+  }
+
+  input[type='radio']:checked + span {
+    border-color: $active-1;
+  }
+}

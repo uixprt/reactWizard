@@ -1,4 +1,4 @@
-import {ControlType} from "../enums";
+import { ControlType } from '../enums';
 
 export interface WizardStep {
   name: string;
@@ -6,6 +6,3 @@ export interface WizardStep {
   type: ControlType;
   values?: string[];
 }
-
-
-

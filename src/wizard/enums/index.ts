@@ -1,1 +1,1 @@
-export { ControlType } from "./controle-types";
+export { ControlType } from './controle-types';

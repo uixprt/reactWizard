@@ -1,0 +1,43 @@
+@import 'src/scss/config/colors';
+
+@mixin base() {
+  color: inherit;
+  background-color: transparent;
+  border: 1px solid currentColor;
+  padding: 0.35em 1.5em;
+  border-radius: 0.9em;
+  cursor: pointer;
+  font: inherit;
+  display: block;
+  text-transform: capitalize;
+  user-select: none;
+  white-space: nowrap;
+}
+
+@mixin active() {
+  cursor: default;
+  background-color: $light-2;
+}
+
+@mixin activeColor() {
+  color: $active-1;
+}
+
+@mixin hover() {
+  background-color: $light-2;
+}
+
+@mixin lg() {
+  font-size: 1.4em;
+  border-radius: 0.2em;
+  padding: 0.4em 2em;
+}
+
+@mixin activePrimary() {
+  background-color: $active-1;
+  color: $light-1;
+}
+
+@mixin activePrimaryHover() {
+  background-color: $active-2;
+}

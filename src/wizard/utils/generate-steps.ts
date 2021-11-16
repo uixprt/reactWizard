@@ -1,4 +1,4 @@
-import { WizardStep, WizardSection } from "../entities";
+import { WizardStep, WizardSection } from '../entities';
 
 export function generateSteps(wizardSections: WizardSection[]): WizardStep[] {
   return wizardSections.reduce((steps, section) => {

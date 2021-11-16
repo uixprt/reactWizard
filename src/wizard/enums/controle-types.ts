@@ -1,5 +1,5 @@
 export enum ControlType {
   Multi = 'multi',
-  String = 'text',
+  String = 'string',
   Number = 'number',
 }

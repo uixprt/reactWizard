@@ -1,0 +1,174 @@
+@use 'src/scss/composes/button';
+@use 'src/scss/composes/controls';
+@import 'src/scss/config/index';
+
+.wizardContainer {
+  padding: 1.6rem;
+  text-align: center;
+}
+
+.title1 {
+  font-size: 2em;
+}
+
+.navList {
+  counter-reset: section;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 50em;
+}
+
+.navItem {
+  flex: 1;
+  margin: 0 0.3em 0.3em;
+}
+
+.navSection {
+  composes: navItem;
+  width: 100%;
+  flex-basis: 100%;
+
+  @media (min-width: 52em) {
+    flex-basis: initial;
+    width: initial;
+  }
+}
+
+.styledButton {
+  & {
+    @include button.base();
+  }
+
+  &.active,
+  &.prev {
+    @include button.activeColor();
+  }
+
+  &.active {
+    @include button.active();
+  }
+
+  &:not(.active, .buttonSubmit, .navSectionButton):hover {
+    @include button.hover();
+  }
+}
+
+.navItemButton {
+  width: 100%;
+}
+
+.navSectionButton {
+  composes: styledButton;
+
+  counter-increment: section;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-weight: bold;
+  padding-left: 0.5em;
+  width: 100%;
+  text-align: left;
+
+  &:before {
+    content: counter(section);
+    font-size: 0.8em;
+    height: 1.4em;
+    width: 1.4em;
+    background-color: #0d131e;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-right: 0.5em;
+  }
+
+  &.active,
+  &.prev {
+    @include button.activePrimary();
+  }
+
+  &:not(.active):hover {
+    @include button.activePrimaryHover();
+  }
+}
+
+.wizardMain {
+  padding: 2em 3vw;
+  text-align: initial;
+  max-width: 50em;
+  border: 1px solid #ccc;
+  margin: 1.5em auto;
+  border-radius: 1em;
+}
+
+.question {
+  margin-top: 0;
+  font-size: 1.5em;
+}
+
+.formGroup {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.radioLabel {
+  @include controls.radioLabel();
+}
+
+.controlInput {
+  @include controls.base();
+
+  &:hover,
+  &:focus {
+    @include controls.focus();
+  }
+}
+
+.wizardFooter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    margin-right: 0.6em;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  b {
+    margin-left: 0.3em;
+  }
+
+  svg {
+    margin-right: 0.3em;
+  }
+}
+
+.footerButton {
+  @include button.lg();
+}
+
+.buttonNext {
+  composes: styledButton;
+}
+
+.buttonSubmit {
+  composes: styledButton;
+  composes: footerButton;
+
+  @include button.activePrimary();
+
+  &:hover {
+    @include button.activePrimaryHover();
+  }
+}

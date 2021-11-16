@@ -1,7 +1,7 @@
-import { NavigationItem, WizardSection } from "../entities";
+import { NavigationItem, WizardSection } from '../entities';
 
 export function generateWizardNavigation(
-  wizardSections: WizardSection[]
+  wizardSections: WizardSection[],
 ): NavigationItem[] {
   let steps = 1;
 
