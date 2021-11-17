@@ -50,7 +50,7 @@
   }
 
   &.active {
-    @include button.active();
+    @include button.activePrimary();
   }
 
   &:not(.active, .buttonSubmit, .navSectionButton):hover {
@@ -90,11 +90,7 @@
 
   &.active,
   &.prev {
-    @include button.activePrimary();
-  }
-
-  &:not(.active):hover {
-    @include button.activePrimaryHover();
+    @include button.active();
   }
 }
 
