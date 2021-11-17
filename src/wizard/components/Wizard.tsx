@@ -38,11 +38,12 @@ export function Wizard() {
 
   const Navigation = () =>
     nav.map((navItem: NavigationItem, index) => (
-      <li key={index} className={`${
-        navItem.isSection
-          ? classes.navSection
-          : classes.navItem
-      }`}>
+      <li
+        key={index}
+        className={`${
+          navItem.isSection ? classes.navSection : classes.navItem
+        }`}
+      >
         <button
           className={`
               ${
@@ -125,17 +126,17 @@ export function Wizard() {
   };
 
   return (
-    <div className={classes.wizardContainer}>
-      <header>
-        <h1 className={classes.title1}>{wizard.name}</h1>
-        <nav>
-          <ul className={classes.navList}>{Navigation()}</ul>
-        </nav>
+    <div className={classes.container}>
+      <header className={classes.header}>
+        <h1 className={classes.title}>{wizard.name}</h1>
       </header>
-      <main className={classes.wizardMain}>
+      <nav className={classes.nav}>
+        <ul className={classes.navList}>{Navigation()}</ul>
+      </nav>
+      <main className={classes.main}>
         {StepContainer(steps[activeStep - 1])}
       </main>
-      <footer className={classes.wizardFooter}>{Footer()}</footer>
+      <footer className={classes.footer}>{Footer()}</footer>
     </div>
   );
 }

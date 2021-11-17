@@ -2,41 +2,72 @@
 @use 'src/scss/composes/controls';
 @import 'src/scss/config/index';
 
-.wizardContainer {
+$md: '(min-width: 52em)';
+
+.container {
   padding: 1.6rem;
   text-align: center;
+  display: grid;
+  grid-template-areas: 'header header' 'nav main' 'nav footer';
+  grid-template-columns: min-content auto;
+  grid-gap: 1.6rem;
+
+  @media #{$md} {
+    display: block;
+  }
 }
 
-.title1 {
+.header {
+  grid-area: header;
+}
+
+.nav {
+  grid-area: nav;
+}
+
+.main {
+  grid-area: main;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+.title {
   font-size: 2em;
 }
 
 .navList {
+  display: flex;
+  flex-direction: column;
+  //justify-content: space-between;
+  height: 100%;
   counter-reset: section;
   list-style: none;
   padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto;
-  max-width: 50em;
+  margin: 0;
+
+  @media #{$md} {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 50em;
+  }
 }
 
 .navItem {
-  flex: 1;
-  margin: 0 0.3em 0.3em;
+  margin: 0 0 1em;
+
+  @media #{$md} {
+    flex: 1;
+    margin: 0 0.3em 0.3em;
+  }
 }
 
 .navSection {
   composes: navItem;
-  width: 100%;
-  flex-basis: 100%;
-
-  @media (min-width: 52em) {
-    flex-basis: initial;
-    width: initial;
-  }
 }
 
 .styledButton {
@@ -50,28 +81,22 @@
   }
 
   &.active {
-    @include button.activePrimary();
+    @include button.active();
   }
 
-  &:not(.active, .buttonSubmit, .navSectionButton):hover {
+  &:not(.active, .buttonSubmit):hover {
     @include button.hover();
   }
 }
 
 .navItemButton {
   width: 100%;
-}
-
-.navSectionButton {
-  composes: styledButton;
 
   counter-increment: section;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  font-weight: bold;
   padding-left: 0.5em;
-  width: 100%;
   text-align: left;
 
   &:before {
@@ -81,26 +106,35 @@
     width: 1.4em;
     background-color: #0d131e;
     color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
+    line-height: 1.4em;
     border-radius: 50%;
     margin-right: 0.5em;
+    font-weight: bold;
   }
 
-  &.active,
-  &.prev {
-    @include button.active();
+  &.active {
+    @include button.activePrimary();
   }
 }
 
-.wizardMain {
-  padding: 2em 3vw;
+.navSectionButton {
+  composes: styledButton;
+  width: 100%;
+  font-weight: bold;
+}
+
+.main {
+  padding: 2em min(1.6rem, 3vw);
   text-align: initial;
-  max-width: 50em;
+  width: min(100%, 50em);
   border: 1px solid #ccc;
-  margin: 1.5em auto;
+  margin: 0 auto;
   border-radius: 1em;
+
+  @media #{$md} {
+    margin: 1.5em auto;
+  }
 }
 
 .question {
@@ -128,7 +162,7 @@
   }
 }
 
-.wizardFooter {
+.footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -152,6 +186,9 @@
 
 .footerButton {
   @include button.lg();
+
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
 }
 
 .buttonNext {
