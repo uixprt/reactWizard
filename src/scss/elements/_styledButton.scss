@@ -1,0 +1,20 @@
+@use '../composes/button';
+
+.styledButton {
+  & {
+    @include button.base();
+  }
+
+  &.active,
+  &.prev {
+    @include button.activeColor();
+  }
+
+  &.active {
+    @include button.active();
+  }
+
+  &:not(.active, .buttonSubmit):hover {
+    @include button.hover();
+  }
+}

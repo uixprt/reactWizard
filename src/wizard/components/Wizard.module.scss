@@ -1,8 +1,9 @@
 @use 'src/scss/composes/button';
 @use 'src/scss/composes/controls';
+@use 'src/scss/elements/styledButton';
+
 @import 'src/scss/config/index';
 
-$md: '(min-width: 52em)';
 
 .container {
   padding: 1.6rem;
@@ -55,73 +56,6 @@ $md: '(min-width: 52em)';
     margin: 0 auto;
     max-width: 50em;
   }
-}
-
-.navItem {
-  margin: 0 0 1em;
-
-  @media #{$md} {
-    flex: 1;
-    margin: 0 0.3em 0.3em;
-  }
-}
-
-.navSection {
-  composes: navItem;
-}
-
-.styledButton {
-  & {
-    @include button.base();
-  }
-
-  &.active,
-  &.prev {
-    @include button.activeColor();
-  }
-
-  &.active {
-    @include button.active();
-  }
-
-  &:not(.active, .buttonSubmit):hover {
-    @include button.hover();
-  }
-}
-
-.navItemButton {
-  width: 100%;
-
-  counter-increment: section;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding-left: 0.5em;
-  text-align: left;
-
-  &:before {
-    content: counter(section);
-    font-size: 0.8em;
-    height: 1.4em;
-    width: 1.4em;
-    background-color: #0d131e;
-    color: #fff;
-    text-align: center;
-    line-height: 1.4em;
-    border-radius: 50%;
-    margin-right: 0.5em;
-    font-weight: bold;
-  }
-
-  &.active {
-    @include button.activePrimary();
-  }
-}
-
-.navSectionButton {
-  composes: styledButton;
-  width: 100%;
-  font-weight: bold;
 }
 
 .main {

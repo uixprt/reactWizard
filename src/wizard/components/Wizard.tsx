@@ -5,8 +5,9 @@ import { generateWizardSteps } from '../utils/generate-wizard-steps';
 import { EnterIcon } from './EnterIcon';
 import { wizard } from '../settings/wizardData';
 import { ControlType } from '../enums';
-import { NavigationItem, WizardStep } from '../entities';
+import { WizardStep } from '../entities';
 import { useActiveStep } from '../hooks/use-active-step';
+import { NavigationItems } from './NavigationItems';
 
 
 import * as classes from './Wizard.module.scss';
@@ -19,35 +20,7 @@ export function Wizard(): JSX.Element {
     steps.length,
   );
 
-  const Navigation = (): JSX.Element[] =>
-    nav.map((navItem: NavigationItem, index) => (
-      <li
-        key={index}
-        className={`${
-          navItem.isSection ? classes.navSection : classes.navItem
-        }`}
-      >
-        <button
-          className={`
-              ${
-                navItem.isSection
-                  ? classes.navSectionButton
-                  : `${classes.navItemButton} ${classes.styledButton}`
-              }
-              ${
-                navItem.stepId === activeStep
-                  ? classes.active
-                  : navItem.stepId <= activeStep
-                  ? classes.prev
-                  : ''
-              }
-          `}
-          onClick={() => setActiveStep(navItem.stepId)}
-        >
-          {navItem.title}
-        </button>
-      </li>
-    ));
+
 
   const StepForm = (currentStep: WizardStep): JSX.Element => {
     let formGroup;
@@ -114,7 +87,7 @@ export function Wizard(): JSX.Element {
         <h1 className={classes.title}>{wizard.name}</h1>
       </header>
       <nav className={classes.nav}>
-        <ul className={classes.navList}>{Navigation()}</ul>
+        <ul className={classes.navList}>{NavigationItems(nav, activeStep, setActiveStep)}</ul>
       </nav>
       <main className={classes.main}>
         {StepContainer(steps[activeStep - 1])}
