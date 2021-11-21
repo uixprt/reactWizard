@@ -1,42 +1,25 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access,@typescript-eslint/restrict-template-expressions,@typescript-eslint/no-unsafe-assignment */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { generateWizardNavigation } from '../utils/generate-wizard-navigation';
-import { generateSteps } from '../utils/generate-steps';
+import { generateWizardSteps } from '../utils/generate-wizard-steps';
 import { EnterIcon } from './EnterIcon';
 import { wizard } from '../settings/wizardData';
 import { ControlType } from '../enums';
 import { NavigationItem, WizardStep } from '../entities';
+import { useActiveStep } from '../hooks/use-active-step';
+
 
 import * as classes from './Wizard.module.scss';
 
-export function Wizard() {
-  const [activeStep, setActiveStep] = useState(1);
-
+export function Wizard(): JSX.Element {
   const nav = generateWizardNavigation(wizard.sections);
-  const steps = generateSteps(wizard.sections);
-  const hasNextStep = activeStep >= steps.length ? false : true;
+  const steps = generateWizardSteps(wizard.sections);
+  const { activeStep, hasNextStep, setActiveStep } = useActiveStep(
+    1,
+    steps.length,
+  );
 
-  useEffect(() => {
-    function handleKeypressClick(e: KeyboardEvent) {
-      if (e.code === 'Enter') {
-        setActiveStep(activeStep + 1);
-      }
-    }
-
-    function eventListenerCleanup() {
-      window.removeEventListener('keypress', handleKeypressClick);
-    }
-
-    if (activeStep < steps.length) {
-      window.addEventListener('keypress', handleKeypressClick);
-    } else {
-      eventListenerCleanup();
-    }
-
-    return eventListenerCleanup;
-  }, [activeStep]);
-
-  const Navigation = () =>
+  const Navigation = (): JSX.Element[] =>
     nav.map((navItem: NavigationItem, index) => (
       <li
         key={index}
@@ -66,7 +49,7 @@ export function Wizard() {
       </li>
     ));
 
-  const StepForm = (currentStep: WizardStep) => {
+  const StepForm = (currentStep: WizardStep): JSX.Element => {
     let formGroup;
     if (currentStep.type === ControlType.Multi && currentStep.values) {
       formGroup = currentStep.values.map((value, index) => (
@@ -91,14 +74,14 @@ export function Wizard() {
     return <div className={classes.formGroup}>{formGroup}</div>;
   };
 
-  const StepContainer = (currentStep: WizardStep) => (
+  const StepContainer = (currentStep: WizardStep): JSX.Element => (
     <>
       <h2 className={classes.question}>{currentStep.question}</h2>
       {StepForm(currentStep)}
     </>
   );
 
-  const Footer = () => {
+  const Footer = (): JSX.Element => {
     if (hasNextStep) {
       return (
         <>
