@@ -77,21 +77,20 @@
 }
 
 .footerButton {
+  @include button.base();
   @include button.lg();
 
-  composes: styledButton;
+  margin: 0.3em;
 
-  margin-top: 0.3em;
-  margin-bottom: 0.3em;
+  &:hover {
+    @include button.hover();
+  }
 }
 
 .buttonSubmit {
-  composes: styledButton;
   composes: footerButton;
 
   @include button.activePrimary();
-
-  margin-left: 0.5em;
 
   &:hover {
     @include button.activePrimaryHover();

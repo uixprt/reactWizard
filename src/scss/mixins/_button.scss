@@ -12,6 +12,7 @@
   text-transform: capitalize;
   user-select: none;
   white-space: nowrap;
+  transition: background-color 250ms ease-in-out;
 }
 
 @mixin active() {
