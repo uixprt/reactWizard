@@ -35,6 +35,7 @@
 
 @mixin activePrimary() {
   background-color: $active-1;
+  border-color: $active-1;
   color: $light-1;
 }
 

@@ -1,0 +1,99 @@
+@use 'src/scss/mixins/button';
+@use 'src/scss/mixins/controls';
+@use 'src/scss/elements/styledButton';
+
+@use 'src/scss/config/index' as config;
+
+.form {
+  display: contents;
+}
+
+.main {
+  grid-area: main;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+.main {
+  padding: 2em min(1.6rem, 3vw);
+  text-align: initial;
+  width: min(100%, 50em);
+  border: 1px solid #ccc;
+  margin: 0 auto;
+  border-radius: 1em;
+
+  @media #{config.$md} {
+    margin: 1.5em auto;
+  }
+}
+
+.question {
+  margin-top: 0;
+  font-size: 1.5em;
+}
+
+.formGroup {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.radioLabel {
+  @include controls.radioLabel();
+}
+
+.controlInput {
+  @include controls.base();
+
+  &:hover,
+  &:focus {
+    @include controls.focus();
+  }
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    margin-right: 0.6em;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  b {
+    margin-left: 0.3em;
+  }
+
+  svg {
+    margin-right: 0.3em;
+  }
+}
+
+.footerButton {
+  @include button.lg();
+
+  composes: styledButton;
+
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+}
+
+.buttonSubmit {
+  composes: styledButton;
+  composes: footerButton;
+
+  @include button.activePrimary();
+
+  margin-left: 0.5em;
+
+  &:hover {
+    @include button.activePrimaryHover();
+  }
+}

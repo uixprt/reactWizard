@@ -3,23 +3,24 @@ import { NavigationItem, WizardSection } from '../entities';
 export function generateWizardNavigation(
   wizardSections: WizardSection[],
 ): NavigationItem[] {
-  let steps = 1;
+  let sectionIndex = 0;
+  let stepIndex = 0;
 
   return wizardSections.reduce((nav: NavigationItem[], section) => {
     nav.push({
+      id: sectionIndex++ + stepIndex,
       title: section.name,
-      stepId: steps,
+      stepId: stepIndex,
       isSection: true,
     });
 
     return section.steps.reduce((nav, step) => {
       nav.push({
+        id: sectionIndex + stepIndex,
         title: step.name,
-        stepId: steps,
+        stepId: stepIndex++,
         isSection: false,
       });
-
-      steps++;
 
       return nav;
     }, nav);

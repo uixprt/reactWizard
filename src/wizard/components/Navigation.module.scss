@@ -1,13 +1,37 @@
-@use 'src/scss/composes/button';
-@use 'src/scss/composes/controls';
+@use 'src/scss/mixins/button';
+@use 'src/scss/mixins/controls';
 @use 'src/scss/elements/styledButton';
 
-@import 'src/scss/config/index';
+@use 'src/scss/config/index' as config;
+
+.nav {
+  grid-area: nav;
+}
+
+.navList {
+  display: flex;
+  flex-direction: column;
+  //justify-content: space-between;
+  height: 100%;
+  counter-reset: section;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  @media #{config.$md} {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 50em;
+  }
+}
 
 .navItem {
   margin: 0 0 1em;
 
-  @media #{$md} {
+  @media #{config.$md} {
     flex: 1;
     margin: 0 0.3em 0.3em;
   }
@@ -32,7 +56,7 @@
     font-size: 0.8em;
     height: 1.4em;
     width: 1.4em;
-    background-color: #0d131e;
+    background-color: config.$dark;
     color: #fff;
     text-align: center;
     line-height: 1.4em;

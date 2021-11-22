@@ -1,6 +1,6 @@
 import { ControlType } from '../enums';
 
-export const wizard = {
+export const wizardSettings = {
   name: 'My wizard',
   sections: [
     {

@@ -7,8 +7,8 @@
     "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "prettier",
-    "plugin:css-modules/recommended"
+    "plugin:css-modules/recommended",
+    "prettier"
   ],
   "rules": {
     "react/prop-types": 0,

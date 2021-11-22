@@ -6,16 +6,14 @@ export function useActiveStep(
 ): {
   activeStep: number;
   hasNextStep: boolean;
-  setActiveStep: Dispatch<SetStateAction<number>>;
+  handelActiveStep: (stepId?: number) => void;
 } {
   const [activeStep, setActiveStep] = useState(initialState);
-
-  const hasNextStep = activeStep >= stepsLength ? false : true;
 
   useEffect(() => {
     function handleKeypressClick(e: KeyboardEvent) {
       if (e.code === 'Enter') {
-        setActiveStep(activeStep + 1);
+        handelActiveStep();
       }
     }
 
@@ -23,14 +21,22 @@ export function useActiveStep(
       window.removeEventListener('keypress', handleKeypressClick);
     }
 
-    if (activeStep < stepsLength) {
-      window.addEventListener('keypress', handleKeypressClick);
-    } else {
-      eventListenerCleanup();
-    }
+    window.addEventListener('keypress', handleKeypressClick);
 
     return eventListenerCleanup;
   }, [activeStep]);
 
-  return { activeStep, hasNextStep, setActiveStep };
+  const hasNextStep = activeStep >= stepsLength - 1 ? false : true;
+
+  function handelActiveStep(stepId: number | null = null) {
+    if (stepId !== null) {
+      setActiveStep(stepId);
+    } else if (hasNextStep) {
+      setActiveStep(activeStep + 1);
+    } else {
+      return;
+    }
+  }
+
+  return { activeStep, hasNextStep, handelActiveStep };
 }
